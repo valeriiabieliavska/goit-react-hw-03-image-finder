@@ -19,14 +19,11 @@ export class App extends Component {
       prevState.query !== this.state.query ||
       prevState.page !== this.state.page
     ) {
+      this.setState({ isLoading: true });
       fetchImages(this.state.query, this.state.page)
         .then(response => {
           this.setState(prev => ({
-            images:
-              this.state.page === 1
-                ? [...response.hits]
-                : [...prev.images, ...response.hits],
-            totalImages: response.totalHits,
+            images: [...prev.images, ...response.hits],
           }));
         })
         .finally(() => {
@@ -36,11 +33,11 @@ export class App extends Component {
   }
 
   handleSubmit = query => {
-    this.setState({ query, isLoading: true, page: 1 });
+    this.setState({ query});
   };
 
   handleLoadMore = () => {
-    this.setState(prevState => ({ page: prevState.page + 1, isLoading: true }));
+    this.setState(prevState => ({ page: prevState.page + 1}));
   };
 
   renderButtonOrLoader = () => {
