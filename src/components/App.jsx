@@ -24,6 +24,7 @@ export class App extends Component {
         .then(response => {
           this.setState(prev => ({
             images: [...prev.images, ...response.hits],
+            totalImages: response.totalHits,
           }));
         })
         .finally(() => {
