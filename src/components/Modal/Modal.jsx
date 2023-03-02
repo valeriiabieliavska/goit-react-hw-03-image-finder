@@ -23,7 +23,7 @@ export class Modal extends Component {
   
 
   render() {
-    const { url, onClose } = this.props;
+    const { url} = this.props;
     return (
       <div className="Overlay" onClick={this.onClose}>
         <div className="Modal">
